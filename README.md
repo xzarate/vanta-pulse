@@ -2,15 +2,18 @@
 
 Minimal cybersecurity news aggregator built with FastAPI.
 
+VantaPulse collects headlines from well-known cybersecurity RSS feeds, deduplicates them, stores them locally in SQLite, and serves them through a minimal dark web interface plus a simple JSON API.
+
 ## Overview
 
-VantaPulse aggregates cybersecurity news from multiple RSS feeds, deduplicates articles, stores them locally in SQLite, and exposes a minimal web interface and API for browsing the latest headlines.
+- Aggregates cybersecurity news from multiple RSS feeds
+- Deduplicates articles by link and normalized title
+- Stores articles locally in SQLite
+- Exposes a minimal web interface and API
 
 ## Screenshot
 
 ![VantaPulse screenshot](assets/screenshot.png)
-
-Place a project screenshot at `assets/screenshot.png` to display it here later.
 
 ## Features
 
@@ -26,6 +29,13 @@ Place a project screenshot at `assets/screenshot.png` to display it here later.
 - The Hacker News
 - BleepingComputer
 - Krebs on Security
+
+## Stack
+
+- FastAPI
+- feedparser
+- SQLite via `sqlite3`
+- Plain HTML, CSS, and JavaScript
 
 ## Run locally
 
@@ -45,13 +55,14 @@ Open `http://127.0.0.1:8000`
 
 ## API
 
-- `GET /api/news`: Returns the latest stored articles as JSON.
-- `GET /api/update`: Refreshes feeds manually. If `UPDATE_TOKEN` is set, call `/api/update?token=...`.
+- `GET /`: Web interface
+- `GET /api/news`: Returns the latest stored articles as JSON
+- `GET /api/update`: Triggers a feed refresh manually
 
 ## Storage
 
 - SQLite database path: `./data/news.db`
-- News is refreshed on startup
+- Data directory is created automatically on startup
 - Stored rows are capped to keep the database small
 
 ## Deployment
@@ -61,3 +72,13 @@ Run in production with:
 ```bash
 uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
 ```
+
+## Repository metadata
+
+Recommended GitHub description:
+
+`Minimal cybersecurity news aggregator built with FastAPI.`
+
+Recommended topics:
+
+`fastapi`, `python`, `cybersecurity`, `rss`, `sqlite`, `news-aggregator`
