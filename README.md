@@ -2,12 +2,30 @@
 
 Minimal cybersecurity news aggregator built with FastAPI.
 
+## Overview
+
+VantaPulse aggregates cybersecurity news from multiple RSS feeds, deduplicates articles, stores them locally in SQLite, and exposes a minimal web interface and API for browsing the latest headlines.
+
+## Screenshot
+
+![VantaPulse screenshot](assets/screenshot.png)
+
+Place a project screenshot at `assets/screenshot.png` to display it here later.
+
 ## Features
 
 - Aggregates multiple RSS feeds
 - Deduplicates articles
-- Minimal UI
+- Minimal dark UI
 - Fast and lightweight
+- Manual refresh endpoint
+- SQLite local storage
+
+## Sources
+
+- The Hacker News
+- BleepingComputer
+- Krebs on Security
 
 ## Run locally
 
@@ -25,12 +43,16 @@ Open `http://127.0.0.1:8000`
 - `PORT`: Optional server port. Defaults to `8000`.
 - `UPDATE_TOKEN`: Optional token for `GET /api/update`. If set, use `/api/update?token=...`.
 
-## Notes
+## API
+
+- `GET /api/news`: Returns the latest stored articles as JSON.
+- `GET /api/update`: Refreshes feeds manually. If `UPDATE_TOKEN` is set, call `/api/update?token=...`.
+
+## Storage
 
 - SQLite database path: `./data/news.db`
-- News refresh runs on startup
-- `/api/news` returns the latest articles
-- `/api/update` triggers a manual refresh
+- News is refreshed on startup
+- Stored rows are capped to keep the database small
 
 ## Deployment
 
